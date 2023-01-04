@@ -4,9 +4,30 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow: hidden;
+}
+
 .App {
+  display: flex;
+  flex-direction: column;
+}
+
+.playfield {
+  transition: 0.5s cubic-bezier(0.6, 0.25, 0.5, 1.3) all;
+
+  & #enemy-screen {
+    background: rgba(255, 0, 0, 0.3);
+  }
+
+  & #player-screen {
+    background: rgba(0, 128, 0, 0.3);
+  }
+}
+
+.screen {
+  width: 100vw;
   height: 100vh;
-  background: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
