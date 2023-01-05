@@ -27,6 +27,12 @@ export class Game {
     return state;
   }
 
+  public shoot(x: number, y: number) {
+    if (this.playerActive) {
+      this.enemyBoard[y][x].status = "x";
+    }
+  }
+
   private constructor() {
     // TODO: münzwurf rein
     this.playerActive = true;

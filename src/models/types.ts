@@ -20,3 +20,14 @@ export type Row = [
   Field
 ];
 export type Board = [Row, Row, Row, Row, Row, Row, Row, Row, Row, Row];
+
+export interface GameState {
+  playerActive: boolean;
+  playerBoard: Board;
+  enemyBoard: Board;
+}
+
+export interface GameContext {
+  game: GameState;
+  refreshState: () => void;
+}
