@@ -30,5 +30,5 @@ export interface GameState {
 
 export interface GameContext {
   game: GameState;
-  refreshState: () => void;
+  setGame: React.Dispatch<React.SetStateAction<GameState>>;
 }

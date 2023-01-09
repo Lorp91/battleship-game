@@ -9,43 +9,6 @@ body {
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-}
-
-.playfield {
-  transition: 0.5s cubic-bezier(0.6, 0.25, 0.5, 1.3) transform;
-  transition-delay: 50ms;
-
-  & #enemy-screen {
-    background: rgba(255, 0, 0, 0.3);
-  }
-
-  & #player-screen {
-    background: rgba(0, 128, 0, 0.3);
-    position: relative;
-  }
-}
-
-.screen {
+  height: 100vh;
   width: 100vw;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#rotation-container {
-  z-index: 1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.activePlayerIndicator {
-  color: black;
-  font-size: 5rem;
-  transform: rotate(180deg);
-  transition: transform 1s ease-in;
 }
