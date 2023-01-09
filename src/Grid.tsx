@@ -18,8 +18,15 @@ export const Grid: React.FunctionComponent<GridProps> = (props: GridProps) => {
     event: React.MouseEvent<HTMLDivElement>,
     field: Field
   ) => {
-    gameLogic.shoot(field.x, field.y);
+    let result = gameLogic.shoot(field.x, field.y);
+    if (!result) {
+      console.log("invalid shot!");
+      return;
+    }
     refreshState();
+    setTimeout(() => {
+      refreshState();
+    }, 1500);
     console.log(field);
   };
 

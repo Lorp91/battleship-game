@@ -25,6 +25,7 @@ export interface GameState {
   playerActive: boolean;
   playerBoard: Board;
   enemyBoard: Board;
+  gameStage: "setup" | "playing";
 }
 
 export interface GameContext {

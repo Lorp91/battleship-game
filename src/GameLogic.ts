@@ -5,6 +5,7 @@ export class Game {
   public playerBoard: Board;
   public enemyBoard: Board;
   public playerActive: boolean;
+  public gameStage: "setup" | "playing";
 
   static getInstance(): Game {
     if (Game.instance) {
@@ -16,10 +17,16 @@ export class Game {
 
   public switchActivePlayer() {
     this.playerActive = !this.playerActive;
+    if (!this.playerActive) {
+      setTimeout(() => {
+        this.enemyShot();
+      }, 50);
+    }
   }
 
   public getState() {
     const state = {
+      gameStage: this.gameStage,
       playerActive: this.playerActive,
       playerBoard: this.playerBoard,
       enemyBoard: this.enemyBoard,
@@ -27,17 +34,23 @@ export class Game {
     return state;
   }
 
-  public shoot(x: number, y: number) {
+  public shoot(x: number, y: number): boolean {
+    let validShot: boolean = true;
     if (this.playerActive) {
       this.enemyBoard[y][x].status = "x";
     }
+    if (validShot) {
+      this.switchActivePlayer();
+    }
+    return validShot;
   }
 
   private constructor() {
     // TODO: münzwurf rein
-    this.playerActive = true;
+    this.playerActive = false;
     this.playerBoard = this.boardSetup();
     this.enemyBoard = this.boardSetup();
+    this.gameStage = "setup";
   }
 
   private boardSetup(): Board {
@@ -56,5 +69,11 @@ export class Game {
       board.push(row as Row);
     }
     return board as Board;
+  }
+
+  private enemyShot() {
+    let x = Math.floor(Math.random() * 9);
+    let y = Math.floor(Math.random() * 9);
+    this.playerBoard[y][x].status = "x";
   }
 }
