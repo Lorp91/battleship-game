@@ -10,6 +10,7 @@ export function boardSetup(): Board {
         x: j,
         y: i,
         status: "",
+        ship: "",
       };
       row.push(field);
     }

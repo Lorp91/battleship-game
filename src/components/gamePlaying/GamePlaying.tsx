@@ -12,6 +12,12 @@ export const GamePlaying = () => {
     <div className="playfield">
       <div id="player-screen" className="screen">
         <Grid board={game.playerBoard} isEnemy={false} />
+        <div className="player-ships">
+          <div>träger</div>
+          <div>schlachtschiff</div>
+          <div>kreuzer</div>
+          <div>terstörer</div>
+        </div>
       </div>
       <div id="enemy-screen" className="screen">
         <Grid board={game.enemyBoard} isEnemy={true} />

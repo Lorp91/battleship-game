@@ -1,0 +1,39 @@
+#setup-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .ships {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .battlefield {
+    height: 70vh;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    & .row {
+      height: 10%;
+      display: flex;
+
+      & .field {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.187);
+      }
+
+      & .active {
+        background: green;
+      }
+
+      & .locked {
+        background: gray;
+      }
+    }
+  }
+}

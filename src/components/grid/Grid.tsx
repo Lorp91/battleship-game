@@ -39,7 +39,11 @@ export const Grid: React.FunctionComponent<GridProps> = (props: GridProps) => {
               key={field.id}
               onClick={() => clickHandler(field)}
             >
-              {field.status}
+              {field.status === "x" ? (
+                <div className="water-shot"></div>
+              ) : (
+                field.status
+              )}
               {/* {`${field.x} / ${field.y}`} */}
             </div>
           ))}
