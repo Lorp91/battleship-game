@@ -6,34 +6,33 @@ import "./gamePlaying.scss";
 
 export const GamePlaying = () => {
   const { game } = useContext(GameStateContext) as GameContext;
-  const [gameover, setGameover] = useState<boolean>(false);
-  const [winner, setWinner] = useState<"Sie" | "Der Feind">("Sie");
+  // const [gameover, setGameover] = useState<boolean>(false);
+  // const [winner, setWinner] = useState<"Sie" | "Der Feind">("Sie");
 
-  useEffect(() => {
-    console.log("effect");
-    let res = true;
-    for (let ship of game.playerShips) {
-      if (ship.body.length) {
-        res = false;
-        break;
-      }
-    }
-    if (res) {
-      setWinner((prev) => "Der Feind");
-      setGameover((prev) => res);
-    }
+  // useEffect(() => {
+  //   let res = true;
+  //   for (let ship of game.playerShips) {
+  //     if (ship.body.length) {
+  //       res = false;
+  //       break;
+  //     }
+  //   }
+  //   if (res) {
+  //     setWinner((prev) => "Der Feind");
+  //     setGameover((prev) => res);
+  //   }
 
-    for (let ship of game.enemyShips) {
-      if (ship.body.length) {
-        res = false;
-        break;
-      }
-    }
-    if (res) {
-      setGameover((prev) => res);
-      return;
-    }
-  }, [game]);
+  //   for (let ship of game.enemyShips) {
+  //     if (ship.body.length) {
+  //       res = false;
+  //       break;
+  //     }
+  //   }
+  //   if (res) {
+  //     setGameover((prev) => res);
+  //     return;
+  //   }
+  // }, [game]);
 
   return (
     <div className="playfield">
@@ -69,16 +68,16 @@ export const GamePlaying = () => {
           ))}
         </div>
       </div>
-      {gameover && (
+      {/* {gameover && (
         <div id="result-container">
           <h3>
             {winner === "Sie"
               ? `${winner} haben Gesiegt!`
               : `${winner} hat Sie niedergestreckt!`}
           </h3>
-          {/* <button onClick={() => setGame(initialState)}>neustart</button> */}
+          {/* <button onClick={() => setGame(initialState)}>neustart</button> 
         </div>
-      )}
+      )} */}
     </div>
   );
 };
