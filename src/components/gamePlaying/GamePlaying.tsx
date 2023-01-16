@@ -20,7 +20,7 @@ export const GamePlaying = () => {
         </div> */}
       </div>
       <div id="enemy-screen" className="screen">
-        <Grid board={game.enemyBoard} isEnemy={false} />
+        <Grid board={game.enemyBoard} isEnemy={true} />
       </div>
       {/* <div id="rotation-container">
         <ImArrowUp

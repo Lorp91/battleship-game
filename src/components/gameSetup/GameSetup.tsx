@@ -151,6 +151,7 @@ export const GameSetup: React.FC = () => {
 
   return (
     <div id="setup-container">
+      <h2>Flottenadmiral, platzieren Sie ihre Schiffe!</h2>
       <div className="ships">
         {game.playerShips.map((ship) => (
           <button
@@ -179,6 +180,7 @@ export const GameSetup: React.FC = () => {
       </div>
       {showReady && (
         <button
+          id="game-start"
           onClick={() => {
             let board = game.playerBoard;
             for (let i = 0; i < 10; i++) {
@@ -201,9 +203,37 @@ export const GameSetup: React.FC = () => {
             }));
           }}
         >
-          zum game
+          in die Schlacht!
         </button>
       )}
+      <div className="controls">
+        <h4>so wird gespielt:</h4>
+        <p>Alle 5 Schiffe müssen auf dem Spielfeld platziert werden.</p>
+        <ul>
+          <li>Träger - 5 blöcke lang</li>
+          <li>Schlachtschiff - 4 blöcke lang</li>
+          <li>Kreuzer - 3 blöcke lang</li>
+          <li>U-Boot - 3 blöcke lang</li>
+          <li>Zerstörer - 2 blöcke lang</li>
+        </ul>
+        <p>
+          Wenn man mit der Maus über das Schlachtfeld fährt kann man sehen wo
+          das Schiff platziert wird.
+        </p>
+        <ul>
+          <p>Mit Linksklick wird das Schiff platziert.</p>
+          <p>Mit Rechtsklick lässt sich das Schiff drehen.</p>
+          <p>
+            Die Knöpfe am Rand des Schlachtfelds dienen zur Neubelegung eines
+            Schiffes für die unentschlossenen.
+          </p>
+        </ul>
+        <p>
+          Wenn ihre komplette Flotte in Formation ist kann die Schlacht
+          beginnen.
+        </p>
+        <p>Viel Glück da draussen... Sie werden es brauchen.</p>
+      </div>
     </div>
   );
 };
