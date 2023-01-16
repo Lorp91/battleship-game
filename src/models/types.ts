@@ -6,8 +6,10 @@ export interface Field {
   status: Status;
   ship: "" | "active" | "locked";
 }
+
 // "" - wasser "x" - wasserschuss "o" - schiff "!" - getroffenes schiff
 export type Status = "" | "x" | "o" | "!";
+
 export type Row = [
   Field,
   Field,
@@ -20,6 +22,7 @@ export type Row = [
   Field,
   Field
 ];
+
 export type Board = [Row, Row, Row, Row, Row, Row, Row, Row, Row, Row];
 
 export interface ShipPart {

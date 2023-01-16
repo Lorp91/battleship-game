@@ -65,12 +65,20 @@ export function enemyShipSetup(enemyB: Board, enemyS: Ship[]) {
       if (orientation === "h") {
         ship.body[i].x = x + i;
         ship.body[i].y = y;
+        enemyB[y][x + i].status = "o";
       } else {
         ship.body[i].x = x;
         ship.body[i].y = y + i;
+        enemyB[y + i][x].status = "o";
       }
-      enemyB[ship.body[i].y][ship.body[i].x].status = "o";
     }
   }
   return { enemyB, enemyS };
+}
+
+export function removeShipPart(x: number, y: number, fleet: Ship[]) {
+  for (let ship of fleet) {
+    ship.body = ship.body.filter((part) => part.x !== x || part.y !== y);
+  }
+  return fleet;
 }

@@ -10,29 +10,39 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
 
-  & #enemy-screen {
-    // background: rgba(255, 0, 0, 0.3);
+    & .fleet {
+      margin: 10px;
+      display: flex;
+      gap: 15px;
+
+      & p {
+        padding: 20px;
+        font-size: large;
+        border: 1px solid black;
+      }
+    }
   }
 
   & #player-screen {
-    // background: rgba(0, 128, 0, 0.3);
     position: relative;
   }
 
-  & #rotation-container {
+  & #result-container {
     z-index: 1;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background: white;
+    border: 5px solid black;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
 
-    & .activePlayerIndicator {
-      color: black;
-      font-size: 5rem;
-      transform: rotate(180deg);
-      transition: transform 1s ease-in;
+    & button {
+      margin: 1rem;
+      padding: 0.2rem 1rem;
     }
   }
 }

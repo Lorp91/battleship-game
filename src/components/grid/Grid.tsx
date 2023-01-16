@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Board, Field, GameContext, Status } from "../../models/types";
 import "./grid.scss";
 import { GameStateContext } from "../../App";
-import { enemyShot } from "../../util/helperFunctions";
+import { enemyShot, removeShipPart } from "../../util/helperFunctions";
 
 interface GridProps {
   board: Board;
@@ -41,12 +41,20 @@ export const Grid: React.FunctionComponent<GridProps> = (props: GridProps) => {
       let enemyboard = game.enemyBoard;
       let res = shot(field.x, field.y, props.isEnemy);
       if (res === true) return;
+      if (res === "!") {
+        let newFleet = removeShipPart(field.x, field.y, game.enemyShips);
+        setGame((prev) => ({ ...prev, enemyShips: newFleet }));
+      }
       enemyboard[field.y][field.x].status = res;
 
       let ownboard = game.playerBoard;
       let coord = enemyShot(ownboard);
       let shotres = shot(coord.x, coord.y, false);
       if (shotres === true) throw new Error("enemyshot wrong!");
+      if (shotres === "!") {
+        let newFleet = removeShipPart(coord.x, coord.y, game.playerShips);
+        setGame((prev) => ({ ...prev, playerShips: newFleet }));
+      }
       ownboard[coord.y][coord.x].status = shotres;
 
       setGame((prev) => ({
@@ -88,19 +96,10 @@ export const Grid: React.FunctionComponent<GridProps> = (props: GridProps) => {
         <div className="row" key={crypto.randomUUID()}>
           {row.map((field) => (
             <div
-              // className="field"
               className={classHandler(field)}
               key={field.id}
               onClick={() => clickHandler(field)}
-            >
-              {/* {field.status === "x" ? (
-                <div className="water-shot"></div>
-              ) : (
-                field.status
-              )} */}
-
-              {/* {`${field.x} / ${field.y}`} */}
-            </div>
+            ></div>
           ))}
         </div>
       ))}

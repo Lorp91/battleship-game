@@ -43,7 +43,6 @@ export const GameSetup: React.FC = () => {
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     field: Field
   ) => {
-    // event.preventDefault();
     if (activeShip === null) return;
     let board = game.playerBoard;
     for (let i = 0; i < activeShip.body.length; i++) {

@@ -4,9 +4,6 @@
   grid-template-columns: 30% 40% 30%;
   grid-template-rows: 10% 75% 15%;
   gap: 10px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
 
   & h2 {
     grid-column: 1 / span 3;
@@ -65,7 +62,6 @@
     }
 
     & p {
-      // padding: 5px;
       margin: 15px;
       max-width: fit-content;
     }
