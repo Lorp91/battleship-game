@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Board, Field, GameContext } from "../../models/types";
+import { Board, Field, GameContext, Status } from "../../models/types";
 import "./grid.scss";
 import { GameStateContext } from "../../App";
 import { enemyShot } from "../../util/helperFunctions";
@@ -12,22 +12,75 @@ interface GridProps {
 export const Grid: React.FunctionComponent<GridProps> = (props: GridProps) => {
   const { game, setGame } = useContext(GameStateContext) as GameContext;
 
+  const shot = (x: number, y: number, isEnemy: boolean): Status | true => {
+    if (isEnemy) {
+      switch (game.enemyBoard[y][x].status) {
+        case "":
+          return "x";
+        case "o":
+          return "!";
+        case "x":
+        case "!":
+          return true;
+      }
+    } else {
+      switch (game.playerBoard[y][x].status) {
+        case "":
+          return "x";
+        case "o":
+          return "!";
+        case "x":
+        case "!":
+          return true;
+      }
+    }
+  };
+
   function clickHandler(field: Field) {
     if (props.isEnemy) {
-      let gameBoard = game.enemyBoard;
-      gameBoard[field.y][field.x].status = "x";
-      let ownBoard = enemyShot(game.playerBoard);
-      setGame((prev) => {
-        return {
-          ...prev,
-          enemyBoard: gameBoard,
-          playerBoard: ownBoard,
-        };
-      });
+      let enemyboard = game.enemyBoard;
+      let res = shot(field.x, field.y, props.isEnemy);
+      if (res === true) return;
+      enemyboard[field.y][field.x].status = res;
+
+      let ownboard = game.playerBoard;
+      let coord = enemyShot(ownboard);
+      let shotres = shot(coord.x, coord.y, false);
+      if (shotres === true) throw new Error("enemyshot wrong!");
+      ownboard[coord.y][coord.x].status = shotres;
+
+      setGame((prev) => ({
+        ...prev,
+        playerBoard: ownboard,
+        enemyBoard: enemyboard,
+      }));
     } else {
       console.log("shot yourself");
     }
   }
+
+  const classHandler = (field: Field) => {
+    let str = "field";
+    switch (field.status) {
+      case "o":
+        if (props.isEnemy) {
+          str += " water";
+        } else {
+          str += " ship";
+        }
+        break;
+      case "!":
+        str += " ship-shot";
+        break;
+      case "":
+        str += " water";
+        break;
+      case "x":
+        str += " water-shot";
+        break;
+    }
+    return str;
+  };
 
   return (
     <div className="board">
@@ -35,15 +88,17 @@ export const Grid: React.FunctionComponent<GridProps> = (props: GridProps) => {
         <div className="row" key={crypto.randomUUID()}>
           {row.map((field) => (
             <div
-              className="field"
+              // className="field"
+              className={classHandler(field)}
               key={field.id}
               onClick={() => clickHandler(field)}
             >
-              {field.status === "x" ? (
+              {/* {field.status === "x" ? (
                 <div className="water-shot"></div>
               ) : (
                 field.status
-              )}
+              )} */}
+
               {/* {`${field.x} / ${field.y}`} */}
             </div>
           ))}

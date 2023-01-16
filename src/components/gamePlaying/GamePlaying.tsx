@@ -12,24 +12,24 @@ export const GamePlaying = () => {
     <div className="playfield">
       <div id="player-screen" className="screen">
         <Grid board={game.playerBoard} isEnemy={false} />
-        <div className="player-ships">
+        {/* <div className="player-ships">
           <div>träger</div>
           <div>schlachtschiff</div>
           <div>kreuzer</div>
           <div>terstörer</div>
-        </div>
+        </div> */}
       </div>
       <div id="enemy-screen" className="screen">
-        <Grid board={game.enemyBoard} isEnemy={true} />
+        <Grid board={game.enemyBoard} isEnemy={false} />
       </div>
-      <div id="rotation-container">
+      {/* <div id="rotation-container">
         <ImArrowUp
           className="activePlayerIndicator"
           style={{
             transform: `rotate(${game.playerActive ? 0 : 180}deg)`,
           }}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

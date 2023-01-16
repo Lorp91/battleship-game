@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GameStateContext } from "../../App";
 import { Field, GameContext, Ship } from "../../models/types";
+import { enemyShipSetup } from "../../util/helperFunctions";
 import "./gameSetup.scss";
 
 export const GameSetup: React.FC = () => {
@@ -180,16 +181,22 @@ export const GameSetup: React.FC = () => {
         <button
           onClick={() => {
             let board = game.playerBoard;
-            for (let i = 0; i < 9; i++) {
-              for (let j = 0; j < 9; j++) {
+            for (let i = 0; i < 10; i++) {
+              for (let j = 0; j < 10; j++) {
                 if (board[i][j].ship === "locked") {
                   board[i][j].status = "o";
                 }
               }
             }
+            let { enemyB, enemyS } = enemyShipSetup(
+              game.enemyBoard,
+              game.enemyShips
+            );
             setGame((prev) => ({
               ...prev,
               playerBoard: board,
+              enemyBoard: enemyB,
+              enemyShips: enemyS,
               gameStage: "playing",
             }));
           }}

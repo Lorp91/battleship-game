@@ -58,8 +58,8 @@ const shipArray: Ship[] = [
 
 export const initialState: GameState = {
   playerBoard: boardSetup(),
-  playerShips: shipArray,
-  enemyShips: shipArray,
+  playerShips: JSON.parse(JSON.stringify(shipArray)),
+  enemyShips: JSON.parse(JSON.stringify(shipArray)),
   enemyBoard: boardSetup(),
   playerActive: true,
   gameStage: "setup",
